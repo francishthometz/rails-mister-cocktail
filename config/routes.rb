@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'doses/new'
+  get 'doses/create'
+  get 'doses/destroy'
   get 'cocktails/index'
   get 'cocktails/show'
   get 'cocktails/new'
