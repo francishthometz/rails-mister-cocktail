@@ -1,6 +1,7 @@
-<h3>Add a new dose</h3>
-<%= simple_form_for [cocktail, dose] do |f| %>
-<%= f.association :ingredient, input_html: { class: "beautiful-dropdown" }, include_hidden: false %>
+<h3>Add a Dose</h3>
+<%= simple_form_for [@cocktail, @dose] do |f| %>
 <%= f.input :description %>
+<%= f.association :ingredient, as: :radio_buttons %>
 <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
+<!-- input_html: { class: "beautiful-dropdown" }, include_hidden: false -->
