@@ -2,8 +2,9 @@
   <div class="row">
     <div class="col-xs-12">
       <h1><%= @cocktail.name %></h1>
-      <%= link_to "Back to Cocktails", cocktails_path %>
+      <%= cl_image_tag @cocktail.photo, height: 300, width: 400, crop: :fill %>
     </div>
+    <%= link_to "Back to Cocktails", cocktails_path, class: "btn btn-primary" %>
   </div>
   <div class="row">
     <div class="col-sm-12 col-md-6">
@@ -17,23 +18,23 @@
         <tbody>
           <% @cocktail.doses.each do |dose| %>
           <tr>
-  <td>
-    <p>
-      <%= dose.ingredient.name %>
-    </p>
-  </td>
-  <td>
-    <p>
-      <%= dose.description %>
-    </p>
-  </td>
-  <td>
-    <%= link_to dose_path(dose.id), method: :delete, data: { confirm: "Are you sure?" } do %>
-    <p><i class="fas fa-trash" aria-hidden="true"></i>
-      <p>
-        <% end %>
-  </td>
-</tr>
+            <td>
+              <p>
+                <%= dose.ingredient.name %>
+              </p>
+            </td>
+            <td>
+              <p>
+                <%= dose.description %>
+              </p>
+            </td>
+            <td>
+              <%= link_to dose_path(dose.id), method: :delete, data: { confirm: "Are you sure?" } do %>
+              <p><i class="fas fa-trash" aria-hidden="true"></i>
+                <p>
+                  <% end %>
+            </td>
+          </tr>
           <% end %>
         </tbody>
       </table>

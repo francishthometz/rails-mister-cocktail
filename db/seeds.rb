@@ -8,25 +8,26 @@
 
 require 'open-uri'
 
-puts 'Destroy ingredients'
-Ingredient.destroy_all
-
 puts 'Destroy Cocktails'
 Cocktail.destroy_all
 
+puts 'Destroy ingredients'
+Ingredient.destroy_all
+
 puts 'Create ingredients'
-url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
-ingredients = JSON.parse(open(url).read)
+url1 = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
+ingredients = JSON.parse(open(url1).read)
 ingredients['drinks'].each do |ingredient|
-  i = Ingredient.create(name: ingredient['strIngredient1'])
+  i = Ingredient.create(name: ingredient['strIngredient'])
   puts "create #{i.name}"
 end
 
 puts 'Create cocktails'
-url = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic'
-cocktails = JSON.parse(open(url).read)
+url2 = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic'
+cocktails = JSON.parse(open(url2).read)
 cocktails['drinks'].each do |cocktail|
-  c = Cocktail.create(name: cocktail['strCocktail1'])
-  puts "create #{c.name}"
+  c = Cocktail.new(name: cocktail['strDrink'])
+  url3 = cocktail['strDrinkThumb']
+  c.remote_photo_url = url3
+  c.save
 end
-

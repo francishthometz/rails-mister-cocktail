@@ -9,11 +9,11 @@
     <div class="row">
       <% @cocktails.each do |cocktail| %>
       <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/500x400/?cocktail');">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path cocktail.photo, height: 300, width: 400, crop: :fill %>');">
           <div class="card-description">
             <h2><%= cocktail.name %></h2>
           </div>
-          <%= link_to "Cocktail", cocktail_path(cocktail), class: 'card-link' %>
+          <%= link_to "", cocktail_path(cocktail), class: 'card-link' %>
         </div>
       </div>
       <% end %>
